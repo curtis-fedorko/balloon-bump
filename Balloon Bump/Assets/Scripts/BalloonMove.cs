@@ -9,10 +9,13 @@ public float startspeed = 1f;
 private Animator anim;
 private float time = 0f; 
 private int tracky = 0; 
+public static bool is_portal; 
 
 void Start(){
     anim = GetComponent<Animator>();
     tracky = 0; 
+    anim.SetBool("is_hit", false);
+    is_portal = false; 
 }
 void Update()
 {
@@ -26,6 +29,7 @@ void Update()
 
      anim.SetBool("is_left", false);
      anim.SetBool("is_right", false);
+     
     if(Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)){
         transform.Translate(Vector3.left * speed * Time.deltaTime); 
         anim.SetBool("is_left", true);
@@ -50,6 +54,15 @@ void OnTriggerEnter2D(Collider2D other){
     {
        tracky = 1; 
     }
+     if (other.CompareTag("dart"))
+    {
+       anim.SetBool("is_hit", true);
+    }
+     if (other.CompareTag("portal"))
+    {
+       is_portal = true; 
+    }
+    
 }
 void OnTriggerExit2D(Collider2D other)
     {

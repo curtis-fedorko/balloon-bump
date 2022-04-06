@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - full_cloud
+  - dart
+  - portal
   layers:
   - Default
   - TransparentFX
