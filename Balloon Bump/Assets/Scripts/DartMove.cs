@@ -15,6 +15,20 @@ public class DartMove : MonoBehaviour
     void Update()
     {
           transform.Translate(Vector3.right * speed * Time.deltaTime); 
+         transform.Translate(Vector3.down * 1f * Time.deltaTime);
         
     }
+    void OnTriggerEnter2D(Collider2D other){
+    
+    if(other.CompareTag("right_side")){
+        gameObject.transform.position = new Vector3(-12.7f, gameObject.transform.position.y, gameObject.transform.position.z);
+
+    }
+    if(other.CompareTag("left_side")){
+        gameObject.transform.position = new Vector3(12.7f, gameObject.transform.position.y, gameObject.transform.position.z);
+
+    }
+
+    
+}
 }

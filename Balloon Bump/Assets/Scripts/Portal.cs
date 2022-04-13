@@ -15,6 +15,7 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.Translate(Vector3.down * 1f * Time.deltaTime); 
         if(BalloonMove.is_portal){
             tempx = transform.localScale;
             tempy = transform.localScale;

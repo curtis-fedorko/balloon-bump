@@ -7,6 +7,10 @@ TagManager:
   - full_cloud
   - dart
   - portal
+  - heart
+  - right_side
+  - left_side
+  - bottom
   layers:
   - Default
   - TransparentFX
