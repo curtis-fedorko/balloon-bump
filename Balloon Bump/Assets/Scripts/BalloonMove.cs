@@ -13,6 +13,7 @@ private int tracky = 0;
 public static bool is_portal; 
 public static bool has_heart; 
 public static bool is_dead; 
+public static bool trackyy; 
 
 void Start(){
     anim = GetComponent<Animator>();
@@ -28,6 +29,7 @@ void Update()
      anim.SetBool("is_right", false);
 
     time += Time.deltaTime; 
+
 
     if(time <= 4.5){
     transform.Translate(Vector3.up * startspeed * Time.deltaTime); 
@@ -61,10 +63,14 @@ void Update()
         transform.Translate(Vector3.right * speed * Time.deltaTime); 
         anim.SetBool("is_right", true);
     }
-    if(is_dead && has_heart){
-
-         SceneManager.LoadScene("Extra");
+    if(ExtraLife.has_done && !trackyy){
+        transform.Translate(Vector3.up * 250f * Time.deltaTime); 
+        trackyy = true;
     }
+    //if(is_dead && has_heart){
+
+     //    SceneManager.LoadScene("Extra");
+    //}
 }
 public static float getScore(){
     return time;
@@ -79,6 +85,7 @@ void OnTriggerEnter2D(Collider2D other){
     {
        anim.SetBool("is_hit", true);
        is_dead = true; 
+    StartCoroutine(waitplz()); 
        Destroy(this.gameObject);
        EndGame(); 
 
@@ -87,6 +94,8 @@ void OnTriggerEnter2D(Collider2D other){
     {
        is_portal = true; 
        anim.SetBool("is_portal", true);
+       StartCoroutine("waitplz"); 
+       SceneManager.LoadScene("Portal");
     }
     if(other.CompareTag("heart")){
         has_heart = true; 
@@ -104,11 +113,12 @@ void OnTriggerEnter2D(Collider2D other){
        // end the game, save the score, check if they have collected a hear
        // if they have, keep score and continue from same point. 
        Destroy(this.gameObject);
-        EndGame(); 
+    EndGame(); 
 
     }
-
-    
+}
+ IEnumerator waitplz(){ //creating a function
+       yield return new WaitForSeconds(6); //tell unity to wait!!
 }
 void EndGame(){
     if(has_heart){
@@ -116,10 +126,8 @@ void EndGame(){
         SceneManager.LoadScene("Extra");
     }
     else{
-        //SceneManager.LoadScene("YouLost");
+        SceneManager.LoadScene("YouLost");
     }
-
-
 }
 void OnTriggerExit2D(Collider2D other)
     {

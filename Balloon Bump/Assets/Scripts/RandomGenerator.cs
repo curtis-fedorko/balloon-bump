@@ -45,10 +45,10 @@ if(totaltime > 30){
              SpawnDart(); 
          }
 }
-if(ExtraLife.has_done && !tracky){
-    SpawnBalloon();
-    tracky = true; 
-}
+//if(ExtraLife.has_done && !tracky){
+    //SpawnBalloon();
+    //tracky = true; 
+//}
         
     }
 
