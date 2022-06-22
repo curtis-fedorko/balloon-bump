@@ -64,7 +64,7 @@ void Update()
         anim.SetBool("is_right", true);
     }
     if(ExtraLife.has_done && !trackyy){
-        transform.Translate(Vector3.up * 250f * Time.deltaTime); 
+        transform.Translate(Vector3.up * 100f * Time.deltaTime); 
         trackyy = true;
     }
     //if(is_dead && has_heart){
