@@ -22,9 +22,10 @@ public class RandomGenerator : MonoBehaviour
          totaltime += Time.deltaTime; 
          timey += Time.deltaTime; 
          darttime += Time.deltaTime; 
-if(totaltime < 30){
+
+if(totaltime < 15){
          if(timey >= 2){
-             timey = 0; 
+             timey = 0;                       
              SpawnNewCloud(); 
          }
          if(totaltime >= randomtime && !heart && !ExtraLife.has_done){
@@ -33,11 +34,33 @@ if(totaltime < 30){
          }
 }
 
-if(totaltime > 30 && totaltime < 60){
-    if(portaltime >= 12){
+if(totaltime < 30){
+         if(timey >= 2){
+             timey = 0; 
+             SpawnNewCloud(); 
+         }
+          if(portaltime >= 12){
         portaltime = 0;
         SpawnPortal(); 
-    }
+        }
+        /*
+         if(totaltime >= randomtime && !heart && !ExtraLife.has_done){
+             SpawnHeart(); 
+             heart = true; 
+         }
+         */
+          if(darttime >= 6){
+              darttime = 0; 
+             SpawnDart(); 
+         }
+}
+
+
+if(totaltime > 30 && totaltime < 60){
+        if(portaltime >= 12){
+        portaltime = 0;
+        SpawnPortal(); 
+        }
          if(timey >= 4){
              timey = 0; 
              SpawnNewCloud(); 
@@ -46,7 +69,7 @@ if(totaltime > 30 && totaltime < 60){
              SpawnHeart(); 
              heart = true; 
          }
-         if(darttime >= 10){
+         if(darttime >= 6){
               darttime = 0; 
              SpawnDart(); 
          }
@@ -61,7 +84,7 @@ if(totaltime > 60 && totaltime < 75){
              timey = 0; 
              SpawnNewCloud(); 
          }
-         if(darttime >= 8){
+         if(darttime >= 4){
               darttime = 0; 
              SpawnDart(); 
          }
@@ -107,8 +130,8 @@ if(totaltime > 100){
  public void SpawnNewCloud(){
         GameObject nc = Instantiate(newCloud[0], this.transform) as GameObject; 
         GameObject nc2 = Instantiate(newCloud[0], this.transform) as GameObject; 
-        nc.transform.localPosition = new Vector3(Random.Range(-13.9f, 12f), 2.25f, 0f);
-        nc2.transform.localPosition = new Vector3(Random.Range(-13.9f, 12f), 1.25f, 0f);
+        nc.transform.localPosition = new Vector3(Random.Range(-13.9f, 12f), Random.Range(2.25f, 3.25f), 0f);
+        nc2.transform.localPosition = new Vector3(Random.Range(-13.9f, 12f), Random.Range(2.25f, 5.25f), 0f);
 
     }
     public void SpawnHeart(){
